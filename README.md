@@ -12,8 +12,8 @@ This is the GraphQL API for FriendCorner social network.
 
 ## Architecture
 
-![architecture](https://github.com/TaylonSopeletto/social-network-api/blob/main/images/architecture.png)
+![architecture](https://github.com/TaylonSopeletto/friendcorner/blob/main/images/architecture.png)
 
 ## Database
 
-![architecture](https://github.com/TaylonSopeletto/social-network-api/blob/main/images/database.png)
+![architecture](https://github.com/TaylonSopeletto/friendcorner/blob/main/images/database.png)
