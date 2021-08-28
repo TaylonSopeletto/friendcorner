@@ -1,18 +1,18 @@
 import axios from 'axios'
 
 const getToken = () => {
-    if(typeof window !== 'undefined') return localStorage.getItem('@key')
+  if (typeof window !== 'undefined') return localStorage.getItem('@key')
 }
 
 export const listRequests = () => {
-    const request = axios({
-        url: 'http://localhost:4000',
-        method: 'POST',
-        headers: {
-            'authorization': getToken()
-        },
-        data: {
-            query:`
+  const request = axios({
+    url: 'https://friend-corner-back.herokuapp.com/',
+    method: 'POST',
+    headers: {
+      'authorization': getToken()
+    },
+    data: {
+      query: `
             {
                 requests{
                   sender{
@@ -23,41 +23,41 @@ export const listRequests = () => {
                 }
               }
             `
-        }
-    })
-
-    return request
-}
-
-export const acceptRequest = ({senderId}) => {
-    const request = axios({
-      url: 'http://localhost:4000',
-      method: 'POST',
-      headers: {
-        'authorization': getToken()
-      },
-      data: {
-          query: `
-          mutation{
-            acceptRequest(senderId: ${senderId})
-          }
-          
-          `
-      }
+    }
   })
 
   return request
 }
 
-export const createRequest = ({receiverId}) => {
+export const acceptRequest = ({ senderId }) => {
   const request = axios({
-    url: 'http://localhost:4000',
+    url: 'https://friend-corner-back.herokuapp.com/',
     method: 'POST',
     headers: {
       'authorization': getToken()
     },
     data: {
-        query: `
+      query: `
+          mutation{
+            acceptRequest(senderId: ${senderId})
+          }
+          
+          `
+    }
+  })
+
+  return request
+}
+
+export const createRequest = ({ receiverId }) => {
+  const request = axios({
+    url: 'https://friend-corner-back.herokuapp.com/',
+    method: 'POST',
+    headers: {
+      'authorization': getToken()
+    },
+    data: {
+      query: `
         mutation{
           createRequest(id: ${receiverId}){
             sender{
@@ -67,7 +67,7 @@ export const createRequest = ({receiverId}) => {
         }
         `
     }
-})
+  })
 
-return request
+  return request
 }

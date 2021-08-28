@@ -1,37 +1,37 @@
 import axios from 'axios'
 
 const getToken = () => {
-    if(typeof window !== 'undefined') return localStorage.getItem('@key')
+  if (typeof window !== 'undefined') return localStorage.getItem('@key')
 }
 
-export const mergePost = ({text}) => {
+export const mergePost = ({ text }) => {
 
-    const request = axios({
-        url: 'http://localhost:4000',
-        method: 'POST',
-        headers: {
-            'authorization': getToken()
-        },
-        data: {
-            query: `
+  const request = axios({
+    url: 'https://friend-corner-back.herokuapp.com/',
+    method: 'POST',
+    headers: {
+      'authorization': getToken()
+    },
+    data: {
+      query: `
             mutation{
                 createPost(text: "${text}"){
                   text
                 }
             }
             `
-        }
-    })
+    }
+  })
 
-    return request
+  return request
 }
 
 export const listPost = () => {
-    const request = axios({
-        url: 'http://localhost:4000',
-        method: 'POST',
-        data: {
-            query:`
+  const request = axios({
+    url: 'https://friend-corner-back.herokuapp.com/',
+    method: 'POST',
+    data: {
+      query: `
             {
                 posts{
                   text,
@@ -43,18 +43,18 @@ export const listPost = () => {
                 }
               }
             `
-        }
-    })
+    }
+  })
 
-    return request
+  return request
 }
 
-export const profilePosts = ({username}) => {
-    const request = axios({
-        url: 'http://localhost:4000',
-        method: 'POST',
-        data: {
-            query:`
+export const profilePosts = ({ username }) => {
+  const request = axios({
+    url: 'https://friend-corner-back.herokuapp.com/',
+    method: 'POST',
+    data: {
+      query: `
             {
                 profilePosts(username: "${username}"){
                   text,
@@ -66,9 +66,9 @@ export const profilePosts = ({username}) => {
                 }
               }
             `
-        }
-    })
+    }
+  })
 
-    return request
+  return request
 }
 

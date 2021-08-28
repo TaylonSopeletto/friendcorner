@@ -1,15 +1,15 @@
 import axios from 'axios'
 
 const getToken = () => {
-    if(typeof window !== 'undefined') return localStorage.getItem('@key')
+    if (typeof window !== 'undefined') return localStorage.getItem('@key')
 }
 
-export const listFriends = ({username}) => {
+export const listFriends = ({ username }) => {
     const request = axios({
-        url: 'http://localhost:4000',
+        url: 'https://friend-corner-back.herokuapp.com/',
         method: 'POST',
         data: {
-            query:`
+            query: `
             {
                 friends(username: "${username}"){
                   username,

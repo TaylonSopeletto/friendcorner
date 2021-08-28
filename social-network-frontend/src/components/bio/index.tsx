@@ -23,7 +23,7 @@ const Bio = () => {
     const [friends, setFriends] = useState([])
 
     const client = new ApolloClient({
-        uri: 'http://localhost:4000',
+        uri: 'https://friend-corner-back.herokuapp.com/',
         cache: new InMemoryCache()
 
     });

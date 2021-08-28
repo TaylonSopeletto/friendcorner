@@ -14,32 +14,32 @@ const PostInput = () => {
         username: '',
         profileImage: ''
     })
-    
+
     const onSubmit = () => {
-        mergePost({text: text})
-        .then(res => {
-            if(res.data && text !== ''){
-                setText('')
-                router.push('/')
-            }
-        })
+        mergePost({ text: text })
+            .then(res => {
+                if (res.data && text !== '') {
+                    setText('')
+                    router.push('/')
+                }
+            })
     }
 
     useEffect(() => {
         tokenProfile()
-        .then(res => {
-            setProfile(res.data.data.tokenProfile)
-        })
+            .then(res => {
+                setProfile(res.data.data.tokenProfile)
+            })
     }, [])
 
     return (
         <Container>
             <Profile>
                 <Image>
-                    <img src={profile.profileImage || '/profile.png'} />
+                    <img src={profile?.profileImage || '/profile.png'} />
                 </Image>
                 <div>
-                    <Name>{profile.username}</Name>
+                    <Name>{profile?.username}</Name>
                 </div>
             </Profile>
             <Input value={text} onChange={e => setText(e.target.value)} placeholder="Share your moment ..."></Input>

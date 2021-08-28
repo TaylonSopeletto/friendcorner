@@ -1,18 +1,18 @@
 import axios from 'axios'
 
 const getToken = () => {
-    if(typeof window !== 'undefined') return localStorage.getItem('@key')
+    if (typeof window !== 'undefined') return localStorage.getItem('@key')
 }
 
 export const tokenProfile = () => {
     const request = axios({
-        url: 'http://localhost:4000',
+        url: 'https://friend-corner-back.herokuapp.com/',
         method: 'POST',
         headers: {
             'authorization': getToken()
         },
         data: {
-            query:`
+            query: `
             {
                 tokenProfile{
                   username,
@@ -27,9 +27,9 @@ export const tokenProfile = () => {
     return request
 }
 
-export const register = ({username, password, email}) => {
+export const register = ({ username, password, email }) => {
     const request = axios({
-        url: 'http://localhost:4000',
+        url: 'https://friend-corner-back.herokuapp.com/',
         method: 'POST',
         data: {
             query: `
@@ -45,9 +45,9 @@ export const register = ({username, password, email}) => {
     return request
 }
 
-export const login = ({password, email}) => {
+export const login = ({ password, email }) => {
     const request = axios({
-        url: 'http://localhost:4000',
+        url: 'https://friend-corner-back.herokuapp.com/',
         method: 'POST',
         data: {
             query: `
