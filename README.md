@@ -2,6 +2,9 @@
 
 This is the GraphQL API for FriendCorner social network.
 
+## Hosted on Heroku
+https://friendcorner.herokuapp.com/
+
 ## Structure
 
 | Codebase                                                                      |      Description          |
