@@ -3,7 +3,7 @@ import { createConnection } from "typeorm";
 import { Comment } from "./entity/Comment";
 import { Post } from "./entity/Post";
 import { Profile } from "./entity/Profile"
-import {Request} from "./entity/Request"
+import { Request } from "./entity/Request"
 import { getManager } from 'typeorm';
 const jwt = require('jsonwebtoken')
 import { getConnection } from 'typeorm'
@@ -86,15 +86,15 @@ createConnection().then(async connection => {
 
 
     const resolvers = {
-       
+
         Query: {
-            findProfile: async(_, args, context) => {
-                const profile = await profileRepository.findOne({username: args.username})
+            findProfile: async (_, args, context) => {
+                const profile = await profileRepository.findOne({ username: args.username })
                 return profile
             },
-            tokenProfile: async(_, args, context) => {
+            tokenProfile: async (_, args, context) => {
                 if (!context.token) {
-                    return {id: 'user not logged'}
+                    return { id: 'user not logged' }
                 }
 
                 const token = await jwt.verify(context.token.split(' ')[1], 'safe_key')
@@ -103,27 +103,27 @@ createConnection().then(async connection => {
                 return result
             },
 
-            requests: async(_, args, context) => {
+            requests: async (_, args, context) => {
 
                 if (!context.token) {
-                    return {id: 'user not logged'}
+                    return { id: 'user not logged' }
                 }
 
                 const token = await jwt.verify(context.token.split(' ')[1], 'safe_key')
 
                 const requests = await requestRepository.find({
-                    where:{
+                    where: {
                         profile: token.id
                     },
-                    join:{
+                    join: {
                         alias: 'request',
-                        leftJoinAndSelect:{
+                        leftJoinAndSelect: {
                             sender: 'request.sender'
                         }
                     }
-                }) 
+                })
 
-                
+
                 return requests
             },
             friends: async (_, args, context) => {
@@ -139,16 +139,16 @@ createConnection().then(async connection => {
                     }
                 })
 
-                if(friends.length > 0) return friends[0].friends
-                
+                if (friends.length > 0) return friends[0].friends
+
             },
             profilePosts: async (_, args, context) => {
 
-                const profile = await profileRepository.findOne({username: args.username})
+                const profile = await profileRepository.findOne({ username: args.username })
 
                 const result = await postRepository.find({
                     where: {
-                      profile: profile
+                        profile: profile
                     },
                     join: {
                         alias: "post",
@@ -157,7 +157,7 @@ createConnection().then(async connection => {
                             profile: "post.profile"
                         },
                     },
-                    order:{
+                    order: {
                         created_at: 'DESC'
                     }
                 })
@@ -173,7 +173,7 @@ createConnection().then(async connection => {
                             profile: "post.profile"
                         },
                     },
-                    order:{
+                    order: {
                         created_at: 'DESC'
                     }
                 })
@@ -204,10 +204,10 @@ createConnection().then(async connection => {
             }
         },
         Mutation: {
-            acceptRequest: async(_: any, args: any, context) => {
+            acceptRequest: async (_: any, args: any, context) => {
 
                 if (!context.token) {
-                    return {id: 'user not logged'}
+                    return { id: 'user not logged' }
                 }
 
                 const token = await jwt.verify(context.token.split(' ')[1], 'safe_key')
@@ -215,12 +215,12 @@ createConnection().then(async connection => {
                 const profile = await profileRepository.findOne(token.id)
 
                 const request = await requestRepository.findOne({
-                    where:{
+                    where: {
                         profile: profile
                     },
                     join: {
                         alias: 'request',
-                        leftJoinAndSelect:{
+                        leftJoinAndSelect: {
                             sender: 'request.sender'
                         }
                     }
@@ -253,12 +253,12 @@ createConnection().then(async connection => {
 
                 return "friend accepted"
 
-            
+
             },
             createRequest: async (_: any, args: any, context) => {
 
                 if (!context.token) {
-                    return {id: 'user not logged'}
+                    return { id: 'user not logged' }
                 }
 
                 const token = await jwt.verify(context.token.split(' ')[1], 'safe_key')
@@ -271,9 +271,9 @@ createConnection().then(async connection => {
                 request.sender = profile
 
                 const result = await requestRepository.save(request)
-                
+
                 return result
-                
+
             },
 
             login: async (_, args) => {
@@ -287,7 +287,7 @@ createConnection().then(async connection => {
             createPost: async (_: any, args: any, context: PostArgsInterface) => {
 
                 if (!context.token) {
-                    return {text: 'user not logged'}
+                    return { text: 'user not logged' }
                 }
 
                 const token = await jwt.verify(context.token.split(' ')[1], 'safe_key')
@@ -332,15 +332,15 @@ createConnection().then(async connection => {
         context: ({ req }) => {
             let token
 
-            if(req.headers.authorization){
+            if (req.headers.authorization) {
                 token = req.headers.authorization.replace('Bearer', '')
             }
-            
+
             return { token }
         }
     });
 
-    server.listen().then(({ url }) => {
+    server.listen({ port: process.env.PORT || 3000 }).then(({ url }) => {
         console.log(`🚀 Server ready at ${url}`);
     });
 
