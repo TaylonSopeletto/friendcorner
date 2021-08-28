@@ -19,7 +19,6 @@
    "cli": {
       "entitiesDir": "src/entity",
       "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber",
-      "appdir": "social-network-api"
+      "subscribersDir": "src/subscriber"
    }
 }
