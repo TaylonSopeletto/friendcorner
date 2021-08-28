@@ -6,4 +6,5 @@ export const Container = styled.div`
     padding: 10px;
     gap: 10px;
     padding-bottom: 100px;
+    padding-top: 110px;
 `
