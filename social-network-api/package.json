@@ -2,13 +2,11 @@
    "name": "app",
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
-   "devDependencies": {
+   "dependencies": {
       "@types/jsonwebtoken": "^8.5.1",
       "@types/node": "^8.0.29",
       "ts-node": "3.3.0",
-      "typescript": "3.3.3333"
-   },
-   "dependencies": {
+      "typescript": "3.3.3333",
       "apollo-server": "^2.24.1",
       "graphql": "^15.5.0",
       "jsonwebtoken": "^8.5.1",
