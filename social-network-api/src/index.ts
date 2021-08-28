@@ -337,7 +337,9 @@ createConnection().then(async connection => {
             }
 
             return { token }
-        }
+        },
+        introspection: true,
+        playground: true
     });
 
     server.listen({ port: process.env.PORT || 3000 }).then(({ url }) => {
