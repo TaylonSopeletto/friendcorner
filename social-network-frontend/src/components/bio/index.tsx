@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 //fetch
 import { listFriends } from 'src/fetch/friends'
 import { createRequest } from 'src/fetch/requests'
+import { getUrl } from 'src/fetch/baseUrl'
 
 const Bio = () => {
 
@@ -23,7 +24,7 @@ const Bio = () => {
     const [friends, setFriends] = useState([])
 
     const client = new ApolloClient({
-        uri: 'https://friend-corner-back.herokuapp.com/',
+        uri: getUrl(),
         cache: new InMemoryCache()
 
     });

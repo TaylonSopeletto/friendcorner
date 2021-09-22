@@ -13,13 +13,13 @@ const Header = () => {
 
     useEffect(() => {
         listRequests()
-        .then(res => {
-            setRequests(res.data.data.requests)
-        })
+            .then(res => {
+                setRequests(res.data.data.requests)
+            })
     }, [])
 
     const onAccept = (id: any) => {
-        acceptRequest({senderId: id})
+        acceptRequest({ senderId: id })
     }
 
     return (
@@ -27,30 +27,30 @@ const Header = () => {
             <Profile>
                 <a href="/">FRIENDCORNER</a>
             </Profile>
-           <Icons>
-               <Friends>
-                <FontAwesomeIcon icon={faUserFriends}/>
-                {
-                    requests?.length > 0 && <span>{requests?.length}</span>
-                }
-               </Friends>
-               <RequestList>
-                   {
-                       requests.map((item, i) => 
-                        <div>
-                            <Image>
-                                <img src={item.sender.profileImage || 'profile.png'}/>
-                            </Image>
-                            <p>{item.sender.username}</p>
+            <Icons>
+                <Friends>
+                    <FontAwesomeIcon icon={faUserFriends} />
+                    {
+                        requests?.length > 0 && <span>{requests?.length}</span>
+                    }
+                </Friends>
+                <RequestList>
+                    {
+                        requests?.map((item, i) =>
                             <div>
-                                <button><FontAwesomeIcon icon={faTimes}/></button>
-                                <button><FontAwesomeIcon onClick={() => onAccept(item.sender.id)} icon={faCheck}/></button>
+                                <Image>
+                                    <img src={item.sender.profileImage || 'profile.png'} />
+                                </Image>
+                                <p>{item.sender.username}</p>
+                                <div>
+                                    <button><FontAwesomeIcon icon={faTimes} /></button>
+                                    <button><FontAwesomeIcon onClick={() => onAccept(item.sender.id)} icon={faCheck} /></button>
+                                </div>
                             </div>
-                        </div>
-                       )
-                   }
-                   
-               </RequestList>
+                        )
+                    }
+
+                </RequestList>
             </Icons>
         </Container>
     )

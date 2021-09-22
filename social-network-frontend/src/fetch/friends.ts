@@ -1,12 +1,9 @@
 import axios from 'axios'
-
-const getToken = () => {
-    if (typeof window !== 'undefined') return localStorage.getItem('@key')
-}
+import { getUrl } from './baseUrl'
 
 export const listFriends = ({ username }) => {
     const request = axios({
-        url: 'https://friend-corner-back.herokuapp.com/',
+        url: getUrl(),
         method: 'POST',
         data: {
             query: `

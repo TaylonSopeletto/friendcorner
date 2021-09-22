@@ -1,8 +1,8 @@
 import Header from 'src/components/header';
 import Feed from 'src/components/feed';
 import PostInput from 'src/components/postInput';
-import Wrapper from 'src/components/wrapper'
-import { listPost } from 'src/fetch/posts'
+import Wrapper from 'src/components/wrapper';
+import { listPost } from 'src/fetch/posts';
 
 export default function Home({ posts }) {
 

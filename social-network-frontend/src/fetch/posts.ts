@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getUrl } from './baseUrl'
 
 const getToken = () => {
   if (typeof window !== 'undefined') return localStorage.getItem('@key')
@@ -7,7 +8,7 @@ const getToken = () => {
 export const mergePost = ({ text }) => {
 
   const request = axios({
-    url: 'https://friend-corner-back.herokuapp.com/',
+    url: getUrl(),
     method: 'POST',
     headers: {
       'authorization': getToken()
@@ -28,7 +29,7 @@ export const mergePost = ({ text }) => {
 
 export const listPost = () => {
   const request = axios({
-    url: 'https://friend-corner-back.herokuapp.com/',
+    url: getUrl(),
     method: 'POST',
     data: {
       query: `
@@ -51,7 +52,7 @@ export const listPost = () => {
 
 export const profilePosts = ({ username }) => {
   const request = axios({
-    url: 'https://friend-corner-back.herokuapp.com/',
+    url: getUrl(),
     method: 'POST',
     data: {
       query: `

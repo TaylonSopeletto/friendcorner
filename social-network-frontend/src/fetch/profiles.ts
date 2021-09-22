@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getUrl } from './baseUrl'
 
 const getToken = () => {
     if (typeof window !== 'undefined') return localStorage.getItem('@key')
@@ -6,7 +7,7 @@ const getToken = () => {
 
 export const tokenProfile = () => {
     const request = axios({
-        url: 'https://friend-corner-back.herokuapp.com/',
+        url: getUrl(),
         method: 'POST',
         headers: {
             'authorization': getToken()
@@ -29,7 +30,7 @@ export const tokenProfile = () => {
 
 export const register = ({ username, password, email }) => {
     const request = axios({
-        url: 'https://friend-corner-back.herokuapp.com/',
+        url: getUrl(),
         method: 'POST',
         data: {
             query: `
@@ -47,7 +48,7 @@ export const register = ({ username, password, email }) => {
 
 export const login = ({ password, email }) => {
     const request = axios({
-        url: 'https://friend-corner-back.herokuapp.com/',
+        url: getUrl(),
         method: 'POST',
         data: {
             query: `

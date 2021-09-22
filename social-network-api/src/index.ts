@@ -270,9 +270,13 @@ createConnection().then(async connection => {
                 request.profile = invited
                 request.sender = profile
 
-                const result = await requestRepository.save(request)
+                if (profile.id !== invited.id) {
+                    const result = await requestRepository.save(request)
+                    return result
+                } else {
+                    return 'error'
+                }
 
-                return result
 
             },
 
@@ -342,7 +346,7 @@ createConnection().then(async connection => {
         playground: true
     });
 
-    server.listen({ port: process.env.PORT || 3000 }).then(({ url }) => {
+    server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
         console.log(`🚀 Server ready at ${url}`);
     });
 

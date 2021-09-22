@@ -39,7 +39,7 @@ const PostInput = () => {
                     <img src={profile?.profileImage || '/profile.png'} />
                 </Image>
                 <div>
-                    <Name>{profile?.username}</Name>
+                    <Name>{profile?.username || 'Guest'}</Name>
                 </div>
             </Profile>
             <Input value={text} onChange={e => setText(e.target.value)} placeholder="Share your moment ..."></Input>

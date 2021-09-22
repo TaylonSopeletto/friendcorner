@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getUrl } from './baseUrl'
 
 const getToken = () => {
   if (typeof window !== 'undefined') return localStorage.getItem('@key')
@@ -6,7 +7,7 @@ const getToken = () => {
 
 export const listRequests = () => {
   const request = axios({
-    url: 'https://friend-corner-back.herokuapp.com/',
+    url: getUrl(),
     method: 'POST',
     headers: {
       'authorization': getToken()
@@ -31,7 +32,7 @@ export const listRequests = () => {
 
 export const acceptRequest = ({ senderId }) => {
   const request = axios({
-    url: 'https://friend-corner-back.herokuapp.com/',
+    url: getUrl(),
     method: 'POST',
     headers: {
       'authorization': getToken()
@@ -51,7 +52,7 @@ export const acceptRequest = ({ senderId }) => {
 
 export const createRequest = ({ receiverId }) => {
   const request = axios({
-    url: 'https://friend-corner-back.herokuapp.com/',
+    url: getUrl(),
     method: 'POST',
     headers: {
       'authorization': getToken()
